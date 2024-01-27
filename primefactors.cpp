@@ -11,7 +11,7 @@ void dbg_out() { cerr << endl; }
 template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr << ' ' << H; dbg_out(T...); }
 #define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__);
 
-const int nax = 1e6 + 1;
+const int nax = 43;
 vector<int> prime(nax, true);
 
 int binpow(int a, int b, int mod) {
@@ -53,7 +53,7 @@ map<int, int> primefactors(int n) {
 		mp[n] = 1;
 		return mp;
 	}
-	for(int i = 2; i <= n; ++i) {
+	for(int i = 2; i * i <= n; ++i) {
 		while(n % i == 0) {
 			mp[i]++;
 			n /= i;

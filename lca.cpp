@@ -14,17 +14,18 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 int LOG;
 int n;
 vector<int> depth;
-vector<vector<int>> graph;
+vector<vector<int>> adj;
 vector<vector<int>> up;
 
-void dfs(int a) {
-	for(int v : graph[a]) {
+void build_lca(int a, int p = -1) {
+	for(int v : adj[a]) {
+		if(v == p) continue;
 		up[v][0] = a;
 		depth[v] = depth[a] + 1;
 		for(int j = 1; j < LOG; ++j) {
 			up[v][j] = up[ up[v][j - 1] ][j - 1];
 		}
-		dfs(v);
+		dfs(v, a);
 	}
 }
 
@@ -66,20 +67,20 @@ int dist(int a, int b) {
 void test_case() {
 	cin >> n;
 	LOG = ceil(log2(n)) + 1;
-	graph.resize(n);
+	adj.resize(n);
 	depth.resize(n);
 	depth.clear();
 	up = vector<vector<int>>(n, vector<int>(LOG));
 	for(int i = 0; i < n; ++i) {
-		graph[i].clear();
+		adj[i].clear();
 		depth[i] = 0;
 		int m; cin >> m;
 		for(int j = 0, u; j < m; ++j) {
 			cin >> u; u--;
-			graph[i].push_back(u);
+			adj[i].push_back(u);
 		}
 	}
-	dfs(0);
+	build_lca(0);
 	int q; cin >> q;
 	while(q--) {
 		int a, b; cin >> a >> b; a--, b--;

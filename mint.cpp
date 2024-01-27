@@ -42,7 +42,7 @@ struct Modular {
 	friend bool operator!=(Modular const& a, Modular const& b) {return a.value != b.value;}
 };
 
-const int mod = 1e9 + 7;
+const int mod = 1e9 + 7; // 998244353
 using mint = Modular<mod>;
 
 mint binpow(mint a, int b) {
@@ -59,7 +59,9 @@ mint binpow(mint a, int b) {
 
 vector<mint> fact = {1}, inv_fact = {1};
 mint C(int n, int k) {
-	assert(k >= 0);
+	if(k < 0) {
+		return 0;
+	}
 	if(n < k) return 0;
 	while(fact.size() <= n) {
 		fact.push_back(fact.back() * (fact.size()));
@@ -68,10 +70,48 @@ mint C(int n, int k) {
 	return fact[n] * inv_fact[n - k] * inv_fact[k]; 
 }
 
+mint A(int n, int k) {
+	if(k < 0) {
+		return 0;
+	}
+	if(n < k) return 0;
+	while(fact.size() <= n) {
+		fact.push_back(fact.back() * (fact.size()));
+		inv_fact.push_back(mint(1) / fact.back());
+	}
+	return fact[n] * inv_fact[n - k]; 
+}
+
+
+mint f(int n) {
+	while(fact.size() <= n) {
+		fact.push_back(fact.back() * (fact.size()));
+		inv_fact.push_back(mint(1) / fact.back());
+	}
+	return fact[n];
+}
+
+mint ifact(int n) {
+	while(fact.size() <= n) {
+		fact.push_back(fact.back() * (fact.size()));
+		inv_fact.push_back(mint(1) / fact.back());
+	}
+	return inv_fact[n];
+}
+
+mint sb(int n, int k) {
+	return C(n + k - 1, k - 1);
+}
+
 
 int main()
 {
 	ios
-	int n, k; cin >> n >> k;
-	cout << C(n, k);
+	int h, w, a, b; cin >> h >> w >> a >> b;
+	mint ans = 0;
+	for(int i = 1; i <= h - a; ++i) {
+		mint f = ways(i, b) * ways(h - i + 1, w - b);
+		ans += f;
+	}
+	
 }

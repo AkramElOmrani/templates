@@ -2,6 +2,7 @@
 const int nax = 51;
 int n;
 vector<vector<bool>> grid(nax, vector<bool>(nax));
+
 vector<pair<int, int>> dir = {
 	{0, -1}, {0, 1}, {-1, 0}, {1, 0}
 };

@@ -26,7 +26,7 @@ struct Segtree {
 		build(1, 0, n - 1, a);
 	}	
 	Segtree(int n_, T neu) : n(n_), neut(neu) {
-		tree.resize(n * 4);
+		tree.assign(n * 4, neut);
 	}
 	T merge(T a, T b) {
 		return a + b;

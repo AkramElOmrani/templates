@@ -37,3 +37,11 @@ void max_self(T& a, T b) {
 		a = b;
 	}
 }
+
+
+template<typename T>
+void min_self(T& a, T b) {
+	if(a > b) {
+		a = b;
+	}
+}

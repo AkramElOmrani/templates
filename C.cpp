@@ -25,6 +25,19 @@ mint C(T n, T k) {
 	return fact[n] * inv_fact[n - k] * inv_fact[k]; 
 }
 
+/*
+ // déarangement
+vector<int> dp(n + 1);
+dp[0] = 1;
+dp[1] = 0;
+for(int i = 2; i <= n; ++i) {
+	// one of the i elements has taken the first term
+	dp[i] = mul(dp[i - 2], (i - 1), m);
+	// no one has taken the first term it's circular
+	dp[i] = add(dp[i], mul(dp[i - 1], (i - 1), m), m);
+}
+
+*/
 
 signed main()
 {
