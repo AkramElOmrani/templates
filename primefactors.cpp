@@ -95,6 +95,7 @@ int main()
 	ios
 	sieve();
 	ll ans = 0;
+	int s = 0;
 	for(int i = 0; i < nax; ++i) {
 		if(prime[i]) {
 			cout << i << '\n';

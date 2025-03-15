@@ -107,11 +107,5 @@ mint sb(int n, int k) {
 int main()
 {
 	ios
-	int h, w, a, b; cin >> h >> w >> a >> b;
-	mint ans = 0;
-	for(int i = 1; i <= h - a; ++i) {
-		mint f = ways(i, b) * ways(h - i + 1, w - b);
-		ans += f;
-	}
-	
+	for(int i = 0; i <= )
 }

@@ -17,6 +17,10 @@ vector<int> depth;
 vector<vector<int>> adj;
 vector<vector<int>> up;
 
+void prepare() {
+	
+}
+
 void build_lca(int a, int p = -1) {
 	for(int v : adj[a]) {
 		if(v == p) continue;
@@ -25,7 +29,7 @@ void build_lca(int a, int p = -1) {
 		for(int j = 1; j < LOG; ++j) {
 			up[v][j] = up[ up[v][j - 1] ][j - 1];
 		}
-		dfs(v, a);
+		build_lca(v, a);
 	}
 }
 
@@ -80,6 +84,8 @@ void test_case() {
 			adj[i].push_back(u);
 		}
 	}
+
+
 	build_lca(0);
 	int q; cin >> q;
 	while(q--) {

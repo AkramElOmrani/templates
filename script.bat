@@ -8,3 +8,5 @@ for /l %%t in (1, 1, 100) do @(
 	FC out out2
 )
 @echo on
+
+rem if errorlevel 1 exit

@@ -7,21 +7,22 @@ using namespace std;
 
 struct Segtree {
 	int n;
+	int neu = 0;
 	vector<int> tree;
 	Segtree(int n_) {
 		n = n_;
-		tree.resize(n * 4);
+		tree.resize(n * 4, neu);
 	}
 	Segtree(vector<int>& a) {
-		n = arr.size();
+		n = a.size();
 		tree.resize(n * 4);
-		build(1, 0, n - 1, arr);
+		build(1, 0, n - 1, a);
 	}
 	int query(int low, int high) {
 		return query(1, 0, n - 1, low, high);
 	}
 	int query(int idx, int min_low, int max_high, int low, int high) {
-		if(max_high < low || min_low > high) return 0;
+		if(max_high < low || min_low > high) return neu;
 		if(low <= min_low && max_high <= high) return tree[idx];
 
 		int mid = (min_low + max_high) / 2;
